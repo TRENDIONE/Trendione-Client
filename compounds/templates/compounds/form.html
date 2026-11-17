@@ -1,0 +1,1 @@
+{% extends 'compounds/base.html' %}{% block content %}<h1>{{ heading }}</h1><div class="panel"><form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Save compound</button> <a class="btn secondary" href="/compounds/">Cancel</a></form></div>{% endblock %}
