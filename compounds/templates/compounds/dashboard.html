@@ -1,0 +1,6 @@
+{% extends 'compounds/base.html' %}{% block title %}Dashboard · Compound Intelligence{% endblock %}{% block content %}
+<h1>Research dashboard</h1><p class="muted">Local compound catalogue · MVP foundation</p>
+<div class="stats"><div class="panel stat">Compounds<strong>{{ compound_count }}</strong></div><div class="panel stat">Categories<strong>{{ category_count }}</strong></div><div class="panel stat">Research pipeline<strong>Not yet configured</strong></div></div>
+<div class="panel"><h2>Find a compound</h2><form action="/compounds/" method="get" class="row"><input name="q" placeholder="Search names, aliases or PubChem CID"><button>Search</button></form><div class="row"><a class="btn" href="/import/pubchem/">Import from PubChem</a><a class="btn secondary" href="/compounds/new/">Create manually</a></div></div>
+<div class="panel"><h2>Recently updated</h2>{% if recent %}<table class="table"><tr><th>Compound</th><th>Category</th><th>Identity</th></tr>{% for c in recent %}<tr><td><a href="{% url 'compound_detail' c.pk %}">{{ c.name }}</a></td><td>{{ c.category|default:'—' }}</td><td><span class="tag">{{ c.get_identity_status_display }}</span></td></tr>{% endfor %}</table>{% else %}<p class="muted">No compounds yet. Import one from PubChem or create one manually.</p>{% endif %}</div>
+{% endblock %}
